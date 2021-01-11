@@ -1,0 +1,42 @@
+#-------------------------------------------------------------------------------
+# Stratus
+base_url: https://www.stratus.co
+
+#-------------------------------------------------------------------------------
+# LOG INTO stratus.co AND COPY THIS FROM YOUR COOKIES OR HEADERS
+c_user: 5735
+xs: a5a07576e0eb53c9e40ecd6de0d3104a
+AWSALB: n9lEKzDOjjLgmV3mq5ZNQBHmSYPnbRzQtPKysNRm+GyjAggM9BwTiK3AX+jA9TBfN5a+e+SW55McBN0HokSP4GvixpaVXSsvrbnUeuTPCAFGytNmhhSADLXTSteM
+AWSALBCORS: n9lEKzDOjjLgmV3mq5ZNQBHmSYPnbRzQtPKysNRm+GyjAggM9BwTiK3AX+jA9TBfN5a+e+SW55McBN0HokSP4GvixpaVXSsvrbnUeuTPCAFGytNmhhSADLXTSteM
+
+#-------------------------------------------------------------------------------
+# DEFINE TEST SETTINGS
+
+# Number of requests per test
+num_req: 50
+# Sleep seconds between request
+sleep: 3
+
+#-------------------------------------------------------------------------------
+# DEFINE TESTS
+tests:
+      - page: Homepage
+        auth: Public
+        load: BAL
+        path: /
+      - page: Homepage
+        auth: Public
+        load: UNBAL
+        path: /
+      - page: Profile 
+        auth: Auth 
+        load: BAL
+        path: /alexk
+      - page: Profile 
+        auth: Auth 
+        load: UNBAL
+        path: /alexk
+      - page: Profile 
+        auth: Public 
+        load: BAL
+        path: /alexk
