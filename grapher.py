@@ -7,6 +7,8 @@ def get_data_filenames():
     data_filenames = []
     filenames = os.listdir("./data")
     for filename in filenames:
+        if filename.split("_")[0] == "archive":
+            continue
         if filename.split(".")[1] == "dat":
             data_filenames.append(filename)
     return data_filenames
