@@ -4,6 +4,7 @@ import os
 import time
 import shutil
 from benchmarker import run as run_benchmark
+from grapher import run as run_grapher
 
 def get_config():
     with open("config.yaml", 'r') as stream:
@@ -45,7 +46,7 @@ def print_usage():
 Usage: python3 main.py [benchmark|graph]
     --overwrite_data    Delete old test data and overwrite
     --save_html         Save html copy of page tested
-        """)
+""")
         exit()
 
 def remove_old_data():
@@ -94,5 +95,6 @@ if __name__ == "__main__":
 
     elif sys.argv[1] == "graph":
         print("Generating graph...")
+        run_grapher()
     else:
         print_usage()
