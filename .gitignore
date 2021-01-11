@@ -3,3 +3,4 @@
 *.swn
 *.swo
 ./data/archive*
+__pycache__/
