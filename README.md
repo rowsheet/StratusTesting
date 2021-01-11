@@ -2,8 +2,9 @@
 
 Performance Test for `www.stratus.co`
 
-I'm consolidating the code to run performance benchmarks and reporting in this repo.
-Evntually I will port configuration to a yaml file or something.
+This does two things:
+1. Runs N number of requests to the URL and path specified with a specified amount of time inbetween and times the request. After this, it saves the data to `./data`. If there was any previous data, it will either overwrite it or archive it in `./data/archive_[timestamp]`. It also optionally saves the html page that you're benchmarking for a sanity check (note that if you test `https://stratus.co/alex`, the routing will redirect you to the root if you don't add `www`).
+2. It graphs the dataset in `./data`. Each dataset is labled by the config (page type, path, auth settings, load-balancer setting). This is also the label you will see in the graph.
 
 ## Usage:
     Usage: python3 main.py [benchmark|graph]
