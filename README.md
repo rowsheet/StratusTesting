@@ -3,8 +3,16 @@
 Performance Test for `www.stratus.co`
 
 This does two things:
+
 1. Runs N number of requests to the URL and path specified with a specified amount of time inbetween and times the request. After this, it saves the data to `./data`. If there was any previous data, it will either overwrite it or archive it in `./data/archive_[timestamp]`. It also optionally saves the html page that you're benchmarking for a sanity check (note that if you test `https://stratus.co/alex`, the routing will redirect you to the root if you don't add `www`).
 2. It graphs the dataset in `./data`. Each dataset is labled by the config (page type, path, auth settings, load-balancer setting). This is also the label you will see in the graph.
+
+If you're going to run this, make sure to set configurations in `config.yaml`. As if writing this, you should still be able to just copy the `config.yaml.samlpe`, but you should get your own session information by creating an account and inspecting the headers. You need these cookies from the headers of a valid authenticated request (because this tests authenticated requests):
+
+        c_user: USER_ID
+        xs: SESSION_KEY
+        AWSALB: LOAD_BALANCING_TOKEN
+        AWSALBCORS: CORS_LOAD_BALANCING_TOKEN
 
 ## Usage:
     Usage: python3 main.py [benchmark|graph]
