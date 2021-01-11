@@ -3,6 +3,7 @@ import yaml
 import os
 import time
 import shutil
+from benchmarker import run as run_benchmark
 
 def get_config():
     with open("config.yaml", 'r') as stream:
@@ -64,20 +65,33 @@ def archive_old_data():
             shutil.move(os.path.join("./data", filename), os.path.join(archive_path, filename))
 
 if __name__ == "__main__":
+
     # Get test config file
     config = get_config()
+
     # Validate config
     validate_config(config)
+
+    # Parse args
     if len(sys.argv) == 1:
         print_usage()
     if sys.argv[1] == "benchmark":
-        print("Running benchmarks...")
+        print("Starting benchmarks tests...")
+        
+        # Either overwrite the old data or archive it.
         if "--overwrite_data" in sys.argv:
             remove_old_data()
         else:
             archive_old_data()
-        if "--save_html" in sys.argv:
-            print("Saving html test copies in data/html...")
+
+        print("--------------------------------------------------------------------------------")
+        # Run each benchmark test.
+        for test in config["tests"]:
+            save_html = False
+            if "--save_html" in sys.argv:
+                save_html = True
+            run_benchmark(test, config, save_html)
+
     elif sys.argv[1] == "graph":
         print("Generating graph...")
     else:
