@@ -1,4 +1,8 @@
+import sys
 import yaml
+import os
+import time
+import shutil
 
 def get_config():
     with open("config.yaml", 'r') as stream:
@@ -35,9 +39,46 @@ def validate_config(config):
         print(ex)
         exit()
 
+def print_usage():
+        print("""
+Usage: python3 main.py [benchmark|graph]
+    --overwrite_data    Delete old test data and overwrite
+    --save_html         Save html copy of page tested
+        """)
+        exit()
+
+def remove_old_data():
+    filenames = os.listdir("./data")
+    for filename in filenames:
+        if filename.split("_")[0] != "archive":
+            filepath = os.path.join("./data", filename)
+            os.remove(filepath)
+
+def archive_old_data():
+    archive_path = "./data/archive_" + str(time.time()).split(".")[0]
+    print("Saving previous test data to " + archive_path)
+    os.makedirs(archive_path)
+    filenames = os.listdir("./data")
+    for filename in filenames:
+        if filename.split("_")[0] != "archive":
+            shutil.move(os.path.join("./data", filename), os.path.join(archive_path, filename))
+
 if __name__ == "__main__":
     # Get test config file
     config = get_config()
     # Validate config
     validate_config(config)
-    print(config)
+    if len(sys.argv) == 1:
+        print_usage()
+    if sys.argv[1] == "benchmark":
+        print("Running benchmarks...")
+        if "--overwrite_data" in sys.argv:
+            remove_old_data()
+        else:
+            archive_old_data()
+        if "--save_html" in sys.argv:
+            print("Saving html test copies in data/html...")
+    elif sys.argv[1] == "graph":
+        print("Generating graph...")
+    else:
+        print_usage()
