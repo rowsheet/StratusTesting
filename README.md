@@ -14,6 +14,8 @@ If you're going to run this, make sure to set configurations in `config.yaml`. A
         AWSALB: LOAD_BALANCING_TOKEN
         AWSALBCORS: CORS_LOAD_BALANCING_TOKEN
 
+NOTE: This is NOT a *stress testing* tool. This is not like Apache Benchmark which can send 2k request concurrently per second. It's intended to get an *average* response time for normal requests. For this reason, please configure the time between each request (default set to 3 seconds in `config.yaml.sample`). Testing the sample config's 5 pages should take about 2 hours to complete.
+
 ## Usage:
     Usage: python3 main.py [benchmark|graph]
         --overwrite_data    Delete old test data and overwrite
