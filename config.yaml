@@ -1,24 +1,19 @@
-#-------------------------------------------------------------------------------
-# Stratus
 base_url: https://www.stratus.co
 
-#-------------------------------------------------------------------------------
 # LOG INTO stratus.co AND COPY THIS FROM YOUR COOKIES OR HEADERS
-c_user: 5735
-xs: a5a07576e0eb53c9e40ecd6de0d3104a
-AWSALB: n9lEKzDOjjLgmV3mq5ZNQBHmSYPnbRzQtPKysNRm+GyjAggM9BwTiK3AX+jA9TBfN5a+e+SW55McBN0HokSP4GvixpaVXSsvrbnUeuTPCAFGytNmhhSADLXTSteM
-AWSALBCORS: n9lEKzDOjjLgmV3mq5ZNQBHmSYPnbRzQtPKysNRm+GyjAggM9BwTiK3AX+jA9TBfN5a+e+SW55McBN0HokSP4GvixpaVXSsvrbnUeuTPCAFGytNmhhSADLXTSteM
 
-#-------------------------------------------------------------------------------
+c_user: USER_ID
+xs: SESSION_KEY 
+AWSALB: LOAD_BALANCING_TOKEN
+AWSALBCORS: CORS_LOAD_BALANCING_TOKEN
+
 # DEFINE TEST SETTINGS
 
-# Number of requests per test
-num_req: 3
-# Sleep seconds between request
-sleep: 1
+num_req: NUM_REQUEST_TO_RUN
+sleep: SECONDS_BETWEEN_REQUESTS
 
-#-------------------------------------------------------------------------------
 # DEFINE TESTS
+
 tests:
       - page: Homepage
         auth: Public
