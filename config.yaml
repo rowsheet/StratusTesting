@@ -13,9 +13,9 @@ AWSALBCORS: n9lEKzDOjjLgmV3mq5ZNQBHmSYPnbRzQtPKysNRm+GyjAggM9BwTiK3AX+jA9TBfN5a+
 # DEFINE TEST SETTINGS
 
 # Number of requests per test
-num_req: 50
+num_req: 3
 # Sleep seconds between request
-sleep: 3
+sleep: 1
 
 #-------------------------------------------------------------------------------
 # DEFINE TESTS
